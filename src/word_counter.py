@@ -7,10 +7,14 @@ def display_count(dictionary):
     :param dictionary: Dictionary with the information of the counted words.
     """
     print()
-    for key in dictionary:
-        time_times = "time" if dictionary[key] == 1 else "times"
-        print(f"---> The word \"{key}\" appears in the input sentence {dictionary[key]} {time_times}")
+    if not dictionary:
+        print("No words where entered")
         print()
+    for key in dictionary:
+        if key:
+            time_times = "time" if dictionary[key] == 1 else "times"
+            print(f"---> The word \"{key}\" appears in the input sentence {dictionary[key]} {time_times}")
+            print()
 
 def word_counter(phrase):
     """
@@ -23,16 +27,16 @@ def word_counter(phrase):
     counted_words = {}
 
     for word in list_of_phrases:
-        word = re.sub('[^A-Za-z0-9]+', '', word) # removes special characters such as uppercase characters, commas, or question marks
+        word = re.sub('[^A-Za-z0-9]+', '', word).lower() # removes special characters such as uppercase characters, commas, or question marks
+        if word:
+            if word not in counted_words:
+                counted_words[word] = 1
+            else:
+                counted_words[word] += 1
 
-        if word not in counted_words:
-            counted_words[word] = 1
-        else:
-            counted_words[word] += 1
-
-    display_count(counted_words)
+    return counted_words
 
 #---------- Main section -------------------------------------------------------
 if __name__ == "__main__":
-    word_counter(input("\nInsert your phrase: "))
-    print()
+    counted_words = word_counter(input("\nInsert your phrase: "))
+    display_count(counted_words)
