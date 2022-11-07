@@ -1,5 +1,5 @@
 import pytest
-from scr.fizz_buzz import fizz_buzz
+from src.fizz_buzz import fizz_buzz
 
 
 @pytest.mark.parametrize(

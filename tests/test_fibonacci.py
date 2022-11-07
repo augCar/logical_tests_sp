@@ -1,5 +1,5 @@
 import pytest
-from scr.fibonacci import calculate_fibonacci
+from src.fibonacci import calculate_fibonacci
 
 @pytest.mark.parametrize(
     ['secuence_length', 'output'],
